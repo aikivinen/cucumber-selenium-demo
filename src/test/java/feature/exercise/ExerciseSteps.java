@@ -15,40 +15,54 @@ import cucumber.api.java.en.When;
 
 public class ExerciseSteps {
 
-/*	
 	private WebDriver driver;
-	 private WebElement departureElem;
-	 private WebElement arrivalElem;
-	
-	 @Given("^user is on front page$")
-	 public void user_is_on_front_page() throws Throwable {
-	
-	 // The geckodriver lives in the projects root folder
-	 System.setProperty("webdriver.gecko.driver", "geckodriver");
-	
-	 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-	 capabilities.setCapability("marionette", true);
-	 capabilities.setBrowserName("firefox");
-	 capabilities.setPlatform(Platform.ANY);
-	
-	 driver = new FirefoxDriver(capabilities);
-	 driver.get("http://matkahuolto.fi");
-	 }
-	
-	 @When("^\"([^\"]*)\" is written to from field$")
-	 public void is_written_to_from_field(String arg1) throws Throwable {
-	
-	 departureElem = driver.findElement(By.name("departurePlaceName"));
-	 arrivalElem = driver.findElement(By.name("arrivalPlaceName"));
-	 departureElem.sendKeys(arg1);
-	 arrivalElem.sendKeys("turku");
-	 driver.findElement(By.cssSelector("form[action='/reittihaku/search'] button[type='submit']")).click();
-	 }
-*/
+
+	/*
+	 * private WebElement departureElem; private WebElement arrivalElem;
+	 * 
+	 * @Given("^user is on front page$") public void user_is_on_front_page()
+	 * throws Throwable {
+	 * 
+	 * // The geckodriver lives in the projects root folder
+	 * System.setProperty("webdriver.gecko.driver", "geckodriver");
+	 * 
+	 * DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+	 * capabilities.setCapability("marionette", true);
+	 * capabilities.setBrowserName("firefox");
+	 * capabilities.setPlatform(Platform.ANY);
+	 * 
+	 * driver = new FirefoxDriver(capabilities);
+	 * driver.get("http://matkahuolto.fi"); }
+	 * 
+	 * @When("^\"([^\"]*)\" is written to from field$") public void
+	 * is_written_to_from_field(String arg1) throws Throwable {
+	 * 
+	 * departureElem = driver.findElement(By.name("departurePlaceName"));
+	 * arrivalElem = driver.findElement(By.name("arrivalPlaceName"));
+	 * departureElem.sendKeys(arg1); arrivalElem.sendKeys("turku");
+	 * driver.findElement(By.
+	 * cssSelector("form[action='/reittihaku/search'] button[type='submit']")).
+	 * click(); }
+	 */
+
+	public WebDriver getDriver() {
+
+		// The geckodriver lives in the projects root folder
+		System.setProperty("webdriver.gecko.driver", "geckodriver");
+
+		DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+		capabilities.setCapability("marionette", true);
+		capabilities.setBrowserName("firefox");
+		capabilities.setPlatform(Platform.ANY);
+
+		return new FirefoxDriver(capabilities);
+	}
+
 	@Given("^user is on the main page$")
 	public void user_is_on_the_main_page() throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		throw new PendingException();
+		this.driver = getDriver();
+		driver.get("http://matkahuolto.fi");
+
 	}
 
 	@Then("^the logo is displayed$")
@@ -63,25 +77,25 @@ public class ExerciseSteps {
 		throw new PendingException();
 	}
 
-	@Given("^the user is on the main page$")
-	public void the_user_is_on_the_main_page() throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		throw new PendingException();
-	}
-
-	@Given("^the link is displayed$")
+	@Then("^the link is displayed$")
 	public void the_link_is_displayed() throws Throwable {
 		// Write code here that turns the phrase above into concrete actions
 		throw new PendingException();
 	}
 
-	@When("^user clicks the link$")
-	public void user_clicks_the_link() throws Throwable {
+	@Given("^ticket sale link is displayed$")
+	public void ticket_sale_link_is_displayed() throws Throwable {
 		// Write code here that turns the phrase above into concrete actions
 		throw new PendingException();
 	}
 
-	@Then("^Online ticket sales page is loaded$")
+	@When("^ticket sale link is clicked$")
+	public void ticket_sale_link_is_clicked() throws Throwable {
+		// Write code here that turns the phrase above into concrete actions
+		throw new PendingException();
+	}
+
+	@Then("^online ticket sales page is loaded$")
 	public void online_ticket_sales_page_is_loaded() throws Throwable {
 		// Write code here that turns the phrase above into concrete actions
 		throw new PendingException();
@@ -89,27 +103,23 @@ public class ExerciseSteps {
 
 	@Given("^parcel tracking system is on the main page$")
 	public void parcel_tracking_system_is_on_the_main_page() throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		throw new PendingException();
+		//is or if isn't test will result in an error...
 	}
 
 	@When("^user inputs number \"([^\"]*)\"$")
 	public void user_inputs_number(String arg1) throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		throw new PendingException();
+		driver.findElement(By.name("package_code")).sendKeys(arg1);
 	}
 
 	@When("^parcel submit button is pressed$")
 	public void parcel_submit_button_is_pressed() throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		throw new PendingException();
+		driver.findElement(By.cssSelector("form[action='/seuranta/tilanne/'] button[type='submit']")).click();;
 	}
 
 	@Then("^parcel sent \"([^\"]*)\" from \"([^\"]*)\" and arrived \"([^\"]*)\" to \"([^\"]*)\" will be displayed$")
 	public void parcel_sent_from_and_arrived_to_will_be_displayed(String arg1, String arg2, String arg3, String arg4)
 			throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		throw new PendingException();
+		// Assert results here
 	}
 
 	@Given("^\\(from, to, departuretime\\) information in the search field$")

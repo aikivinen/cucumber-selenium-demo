@@ -8,8 +8,8 @@ Scenario: Ticket offers and the link to online ticket sales -page are visible
      And the link is displayed
      
 Scenario: The link is redirecting to online tickets sales -page
-     Given the user is on the main page
-     And the link is displayed
-     When user clicks the link
-     Then Online ticket sales page is loaded
+     Given user is on the main page
+     And ticket sale link is displayed
+     When ticket sale link is clicked
+     Then online ticket sales page is loaded
      
